@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "HTTP 402 Alert",
+  "version": "1.0.0",
+  "description": "Displays a popup alert whenever a 402 Payment Required HTTP status code is detected",
+  "permissions": [
+    "webRequest",
+    "notifications"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
