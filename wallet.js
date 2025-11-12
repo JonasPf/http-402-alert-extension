@@ -1,4 +1,5 @@
 // Ethereum Wallet Management
+import { ethers } from 'ethers';
 
 class EthereumWallet {
   constructor() {
@@ -62,3 +63,5 @@ class EthereumWallet {
     return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`;
   }
 }
+
+export { EthereumWallet };

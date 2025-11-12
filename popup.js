@@ -1,15 +1,11 @@
+import { EthereumWallet } from './wallet.js';
+
 // Initialize wallet when DOM and scripts are ready
 let ethereumWallet;
 
 // Wait for ethers.js to load
 window.addEventListener('load', () => {
   try {
-    if (typeof ethers === 'undefined') {
-      console.error('ethers.js not loaded');
-      document.getElementById('wallet-address').textContent = 'ethers.js not loaded';
-      return;
-    }
-    
     ethereumWallet = new EthereumWallet();
     
     // Initialize wallet and display address

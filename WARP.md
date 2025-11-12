@@ -37,6 +37,29 @@ This is a Chrome Manifest V3 extension that monitors HTTP traffic and alerts use
 
 **Note**: This project uses [devbox](https://www.jetpack.io/devbox/) for environment management. Prefix all commands with `devbox run` (e.g., `devbox run python script.py`).
 
+### Install Dependencies
+```bash
+devbox run npm install
+```
+Installs npm dependencies including ethers.js and esbuild (bundler).
+
+### Build Extension
+```bash
+devbox run npm run build
+```
+Bundles all JavaScript files (including ethers.js) and copies static assets to the `build/` directory. The bundler:
+- Bundles `popup.js` with `wallet.js` and `ethers` into a single file
+- Bundles `background.js` separately
+- Copies all static files (HTML, CSS, icons, manifest) to `build/`
+
+Run this after making any code changes or updating dependencies.
+
+### Clean Build Directory
+```bash
+devbox run npm run clean
+```
+Removes the `build/` directory.
+
 ### Create Icon Placeholders
 ```bash
 ./create_icons.sh
@@ -44,10 +67,11 @@ This is a Chrome Manifest V3 extension that monitors HTTP traffic and alerts use
 Generates placeholder PNG files for the extension icons (16x16, 48x48, 128x128 pixels). Required before loading the extension.
 
 ### Load Extension in Chrome
-1. Navigate to `chrome://extensions/`
-2. Enable "Developer mode" (top-right toggle)
-3. Click "Load unpacked"
-4. Select this directory
+1. Build the extension first: `devbox run npm run build`
+2. Navigate to `chrome://extensions/`
+3. Enable "Developer mode" (top-right toggle)
+4. Click "Load unpacked"
+5. Select the `build/` directory
 
 ### Reload After Changes
 After modifying code, click the reload icon in `chrome://extensions/` for this extension, or use the keyboard shortcut `Cmd+R` (macOS) / `Ctrl+R` (Windows/Linux) while on the extensions page.
@@ -89,6 +113,10 @@ Then visit `http://localhost:5000/test-402` in Chrome to trigger the extension.
 - Check `console.log` statements in both contexts
 
 ## Key Implementation Details
+
+### Dependencies
+- **ethers.js**: Ethereum JavaScript library used for wallet functionality. Managed via npm and bundled into popup.js via esbuild.
+- **esbuild**: Fast JavaScript bundler used to bundle the extension's JavaScript files with dependencies.
 
 ### Storage Limitations
 - Events stored in memory only (not persisted)
@@ -132,6 +160,8 @@ To create a distributable package:
 3. Or use Chrome CLI: `chrome --pack-extension=/path/to/extension`
 
 ## File Structure
+
+### Source Files
 ```
 .
 ├── manifest.json          # Extension configuration (Manifest V3)
@@ -139,8 +169,21 @@ To create a distributable package:
 ├── popup.html            # Popup UI structure
 ├── popup.js              # Popup logic and rendering
 ├── popup.css             # Popup styles
+├── wallet.js             # Ethereum wallet functionality
 ├── icon16.png            # Extension icon (16x16)
 ├── icon48.png            # Extension icon (48x48)
 ├── icon128.png           # Extension icon (128x128)
-└── create_icons.sh       # Script to generate placeholder icons
+├── create_icons.sh       # Script to generate placeholder icons
+├── build.js              # Build script for bundling
+├── package.json          # NPM dependencies and build scripts
+├── devbox.json           # Devbox configuration
+├── node_modules/         # NPM packages (gitignored)
+└── build/                # Built extension (gitignored)
+```
+
+### Build Output (`build/` directory)
+After running `npm run build`, the `build/` directory contains:
+- Bundled JavaScript files with all dependencies included
+- All static assets (HTML, CSS, icons, manifest)
+- Ready to load into Chrome
 ```
