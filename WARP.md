@@ -35,6 +35,8 @@ This is a Chrome Manifest V3 extension that monitors HTTP traffic and alerts use
 
 ## Development Commands
 
+**Note**: This project uses [devbox](https://www.jetpack.io/devbox/) for environment management. Prefix all commands with `devbox run` (e.g., `devbox run python script.py`).
+
 ### Create Icon Placeholders
 ```bash
 ./create_icons.sh
