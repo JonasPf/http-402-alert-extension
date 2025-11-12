@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTTP 402 Alert</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+  <header class="app-header">
+    <div class="header-top">
+      <div class="logo-area">
+        <img src="logo-48.png" alt="Logo" class="logo-icon">
+        <h1>HTTP 402 Alert</h1>
+      </div>
+      <button id="settings-toggle-btn" class="icon-btn" title="Settings">⚙️</button>
+    </div>
+  </header>
+
+  <main class="content-area">
+    <!-- Pay View (Default) -->
+    <section id="pay-view" class="view-pane active">
+      <div class="balance-area">
+        <div class="balance-label">Balance (Base Sepolia)</div>
+        <div class="balance-value" id="wallet-balance">Loading...</div>
+      </div>
+      <div id="alerts-list" class="card-list">
+        <!-- Alert items will be injected here -->
+        <div class="empty-state">
+          <div class="empty-icon">✨</div>
+          <p>No paid content available</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Settings View -->
+    <section id="settings-view" class="view-pane">
+      <div class="settings-header">
+        <h2>Settings</h2>
+      </div>
+      <div class="settings-card">
+        <div class="setting-row">
+          <label>Wallet Address</label>
+          <div class="address-display-simple">
+            <code id="wallet-address">Loading...</code>
+            <button id="copy-address-btn" class="icon-btn-simple" title="Copy Address">📋</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <button id="faucet-btn" class="setting-item">
+          <span>🚰 Get Testnet USDC</span>
+          <span class="arrow">›</span>
+        </button>
+
+        <button id="reveal-key-btn" class="setting-item">
+          <span>🔑 Reveal Private Key</span>
+          <span class="arrow">›</span>
+        </button>
+
+        <div id="private-key-section" class="hidden-section">
+          <div class="warning-box">
+            ⚠️ <strong>Warning:</strong> Never share this key.
+          </div>
+          <div class="key-display">
+            <code id="private-key"></code>
+            <button id="copy-key-btn" class="text-btn">Copy</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  </div>
+
+  <!-- Payment Modal -->
+  <div id="payment-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Confirm Payment</h3>
+        <button class="close-modal">×</button>
+      </div>
+
+      <div class="payment-summary">
+        <div class="summary-row">
+          <span>Site</span>
+          <strong id="modal-site">example.com</strong>
+        </div>
+        <div class="summary-row">
+          <span>Cost</span>
+          <strong id="modal-cost" class="highlight-cost">--</strong>
+        </div>
+      </div>
+
+      <div id="payment-details" class="payment-details-box"></div>
+
+      <div id="payment-status" class="status-message"></div>
+
+      <div class="modal-actions">
+        <button id="cancel-payment-btn" class="btn secondary">Cancel</button>
+        <button id="confirm-payment-btn" class="btn primary">Pay & Access</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>

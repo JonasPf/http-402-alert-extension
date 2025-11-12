@@ -1,0 +1,21 @@
+{
+  "name": "http-402-alert-extension",
+  "version": "1.0.0",
+  "description": "A Chrome extension that automatically detects and alerts you whenever a **402 Payment Required** HTTP status code is encountered during web browsing.",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node build.js",
+    "clean": "rm -rf build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "viem": "^2.39.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.27.0"
+  }
+}
