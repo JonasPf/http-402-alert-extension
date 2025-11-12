@@ -36,6 +36,19 @@
     <button id="clear-btn">Clear Notifications</button>
   </div>
   
+  <!-- Payment Confirmation Modal -->
+  <div id="payment-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <h2>💳 Payment Required</h2>
+      <div id="payment-details" class="payment-details"></div>
+      <div class="payment-actions">
+        <button id="confirm-payment-btn" class="confirm-btn">Pay & Fetch Content</button>
+        <button id="cancel-payment-btn" class="cancel-btn">Cancel</button>
+      </div>
+      <div id="payment-status" class="payment-status"></div>
+    </div>
+  </div>
+  
   <script src="popup.js"></script>
 </body>
 </html>
