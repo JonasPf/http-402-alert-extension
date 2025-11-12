@@ -5,7 +5,8 @@
   "description": "Displays a popup alert whenever a 402 Payment Required HTTP status code is detected",
   "permissions": [
     "webRequest",
-    "notifications"
+    "notifications",
+    "storage"
   ],
   "host_permissions": [
     "<all_urls>"
