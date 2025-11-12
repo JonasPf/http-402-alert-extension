@@ -66,22 +66,21 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   } else if (request.action === 'clearBadge') {
     chrome.action.setBadgeText({ text: '' });
   } else if (request.action === 'openContentTab') {
-    // Open a new tab with the fetched content
-    chrome.tabs.create({
-      url: 'about:blank'
-    }, (tab) => {
-      // Inject the content into the new tab
-      chrome.scripting.executeScript({
-        target: { tabId: tab.id },
-        func: (content) => {
-          document.open();
-          document.write(content);
-          document.close();
-        },
-        args: [request.content]
+    console.log('Opening new tab with content, length:', request.content?.length);
+    
+    // Store content in session storage
+    chrome.storage.session.set({ fetchedContent: request.content }, () => {
+      console.log('Content stored in session storage');
+      
+      // Open the content display page
+      chrome.tabs.create({
+        url: chrome.runtime.getURL('content-display.html')
+      }, (tab) => {
+        console.log('Content display tab created:', tab.id);
+        sendResponse({ success: true, tabId: tab.id });
       });
-      sendResponse({ success: true, tabId: tab.id });
     });
+    
     return true; // Keep channel open for async response
   }
   return true;

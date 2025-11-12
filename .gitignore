@@ -30,3 +30,5 @@ ethers.min.js
 # Temporary files
 tmp/
 temp/
+
+TODO.md

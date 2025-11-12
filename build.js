@@ -37,6 +37,8 @@ Promise.all(
     'manifest.json',
     'popup.html',
     'popup.css',
+    'content-display.html',
+    'content-display.js',
     'icon16.png',
     'icon48.png',
     'icon128.png'
